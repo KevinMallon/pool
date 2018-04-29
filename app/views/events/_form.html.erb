@@ -18,12 +18,12 @@
 
   <div class="field">
     <%= form.label :start_date %>
-    <%= select_date DateTime.now, prefix: :start_date %>
+    <%= date_select :event, :start_date %>
   </div>
   
   <div class="field">
     <%= form.label :end_date %>
-    <%= select_date DateTime.now, prefix: :end_date %>
+    <%= date_select :event, :end_date %>
   </div>
 
   <div class="actions">
