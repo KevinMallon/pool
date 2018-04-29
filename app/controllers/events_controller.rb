@@ -1,5 +1,8 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :admin_only, :except => :show
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+
 
   # GET /events
   # GET /events.json
@@ -62,6 +65,12 @@ class EventsController < ApplicationController
   end
 
   private
+    def admin_only
+      unless current_user.admin?
+        redirect_to root_path, :alert => "Acccess denied."
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
@@ -69,6 +78,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name)
+      params.require(:event).permit(:name, :start_date, :end_date)
     end
 end

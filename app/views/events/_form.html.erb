@@ -16,6 +16,16 @@
     <%= form.text_field :name %>
   </div>
 
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= select_date DateTime.now, prefix: :start_date %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= select_date DateTime.now, prefix: :end_date %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
